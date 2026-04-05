@@ -117,4 +117,29 @@ logo.classList.contains('c');
 // dont's use
 // logo.className = 'jonas';
 
-console.log(logo.classList);
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+btnScrollTo.addEventListener('click', function (e) {
+  const s1coords = section1.getBoundingClientRect();
+  console.log(s1coords);
+  console.log(e.target.getBoundingClientRect());
+  console.log('current scroll ', window.scrollY);
+  console.log(
+    'h,w',
+    document.documentElement.clientHeight,
+    document.documentElement.clientWidth
+  );
+
+  // // scrolling
+  // window.scrollTo(
+  //   s1coords.left + window.scrollX,
+  //   s1coords.top + window.scrollY
+  // );
+
+  window.scrollTo({
+    left: s1coords.left + window.scrollX,
+    top: s1coords.top + window.scrollY,
+    behavior: 'smooth',
+  });
+});
