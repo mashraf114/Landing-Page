@@ -137,9 +137,24 @@ btnScrollTo.addEventListener('click', function (e) {
   //   s1coords.top + window.scrollY
   // );
 
-  window.scrollTo({
-    left: s1coords.left + window.scrollX,
-    top: s1coords.top + window.scrollY,
-    behavior: 'smooth',
-  });
+  // window.scrollTo({
+  //   left: s1coords.left + window.scrollX,
+  //   top: s1coords.top + window.scrollY,
+  //   behavior: 'smooth',
+  // });
+
+  section1.scrollIntoView({ behavior: 'smooth' });
 });
+
+const h1 = document.querySelector('h1');
+
+const alertH1 = function (e) {
+  alert('adfjdnfoikjdpofjopjfopajfopjed');
+};
+
+h1.addEventListener('mouseenter', alertH1);
+
+setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000);
+// h1.onmouseenter('mouseenter', function (e) {
+//   alert('dcdscdscdscdsc');
+// });
