@@ -7,6 +7,8 @@ const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
 
 const openModal = function (e) {
   e.preventDefault();
@@ -33,12 +35,61 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
-////////////////////////
-////////////////////////
-////////////////////////
-////////////////////////
-////////////////////////
+// btn scrolling
 
+btnScrollTo.addEventListener('click', function (e) {
+  const s1coords = section1.getBoundingClientRect();
+  console.log(s1coords);
+  console.log(e.target.getBoundingClientRect());
+  console.log('current scroll ', window.scrollY);
+  console.log(
+    'h,w',
+    document.documentElement.clientHeight,
+    document.documentElement.clientWidth
+  );
+
+  // // scrolling
+  // window.scrollTo(
+  //   s1coords.left + window.scrollX,
+  //   s1coords.top + window.scrollY
+  // );
+
+  // window.scrollTo({
+  //   left: s1coords.left + window.scrollX,
+  //   top: s1coords.top + window.scrollY,
+  //   behavior: 'smooth',
+  // });
+
+  section1.scrollIntoView({ behavior: 'smooth' });
+});
+// page navigation
+
+// document.querySelectorAll('.nav__link').forEach(function (el) {
+//   el.addEventListener('click', function (e) {
+//     e.preventDefault();
+//     const id = this.getAttribute('href');
+//     console.log(id);
+//     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+//   });
+// });
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  e.preventDefault();
+
+  // Matching strategy
+  if (e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href');
+    console.log(id);
+
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  }
+});
+////////////////////////y
+////////////////////////
+////////////////////////
+////////////////////////
+////////////////////////
+/*
 // selecting elements
 
 // console.log(document.documentElement);
@@ -82,10 +133,10 @@ document
 
 message.style.backgroundColor = '#37383d';
 
-message.style.width = '120%';
-console.log(message.style.color);
-console.log(message.style.backgroundColor);
-console.log(getComputedStyle(message).height);
+// message.style.width = '120%';
+// console.log(message.style.color);
+// console.log(message.style.backgroundColor);
+// console.log(getComputedStyle(message).height);
 message.style.height =
   Number.parseFloat(getComputedStyle(message).height) + 30 + 'px';
 
@@ -94,19 +145,19 @@ document.documentElement.style.setProperty('--color-primary', 'orangered');
 // atributes
 
 const logo = document.querySelector('.nav__logo');
-console.log(logo.className);
+// console.log(logo.className);
 logo.alt = 'minimalist logo';
-console.log(logo.alt);
+// console.log(logo.alt);
 logo.setAttribute('company', 'bankist');
-console.log(logo.getAttribute('company'));
+// console.log(logo.getAttribute('company'));
 
 const link = document.querySelector('.nav__link--btn');
-console.log(link.href);
-console.log(link.getAttribute('href'));
+// console.log(link.href);
+// console.log(link.getAttribute('href'));
 
 // data
 
-console.log(logo.dataset.versionNumber);
+// console.log(logo.dataset.versionNumber);
 
 // classes
 
@@ -116,35 +167,6 @@ logo.classList.toggle('c');
 logo.classList.contains('c');
 // dont's use
 // logo.className = 'jonas';
-
-const btnScrollTo = document.querySelector('.btn--scroll-to');
-const section1 = document.querySelector('#section--1');
-
-btnScrollTo.addEventListener('click', function (e) {
-  const s1coords = section1.getBoundingClientRect();
-  console.log(s1coords);
-  console.log(e.target.getBoundingClientRect());
-  console.log('current scroll ', window.scrollY);
-  console.log(
-    'h,w',
-    document.documentElement.clientHeight,
-    document.documentElement.clientWidth
-  );
-
-  // // scrolling
-  // window.scrollTo(
-  //   s1coords.left + window.scrollX,
-  //   s1coords.top + window.scrollY
-  // );
-
-  // window.scrollTo({
-  //   left: s1coords.left + window.scrollX,
-  //   top: s1coords.top + window.scrollY,
-  //   behavior: 'smooth',
-  // });
-
-  section1.scrollIntoView({ behavior: 'smooth' });
-});
 
 const h1 = document.querySelector('h1');
 
@@ -158,3 +180,32 @@ setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000);
 // h1.onmouseenter('mouseenter', function (e) {
 //   alert('dcdscdscdscdsc');
 // });
+
+// random color
+// rgb(255,255,255)
+
+const randomInt = (min, max) => Math.floor(Math.random() * (max - min) + min);
+const randomColor = () =>
+  `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
+// console.log(randomColor(0, 255));
+
+document.querySelector('.nav__link').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+
+  // console.log('link', e.target, e.currentTarget);
+
+  // stop prop
+  // e.stopPropagation();
+});
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+  // console.log('cont', e.target, e.currentTarget);
+});
+
+document.querySelector('.nav').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+  // console.log('nav', e.target, e.currentTarget);
+  // console.log(this === e.currentTarget);
+});
+*/
