@@ -84,6 +84,41 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
   }
 });
+
+// tabbed component
+
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
+//next is bad practice
+// tabs.forEach(t => t.addEventListener('click', () => console.log('Ttab')));
+
+tabsContainer.addEventListener('click', function (e) {
+  // matching strategy
+  // closest , the best method in event delegation
+  const clicked = e.target.closest('.operations__tab');
+  console.log(clicked);
+
+  // gaurd clause
+  if (!clicked) return;
+
+  // active tab
+  tabs.forEach(t => t.classList.remove('operations__tab--active'));
+  clicked.classList.add('operations__tab--active');
+  tabsContent.forEach(c => c.classList.remove('operations__content--active'));
+  // Activate tab
+  clicked.classList.add('operations__tab--active');
+
+  //active content area
+  // console.log(clicked.dataset.tab);
+  // document
+  //   .querySelector(`operations__content--${clicked.dataset.tab}`)
+  //   .classList.add('operations__content--active');
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
+});
+
 ////////////////////////y
 ////////////////////////
 ////////////////////////
@@ -207,5 +242,27 @@ document.querySelector('.nav').addEventListener('click', function (e) {
   this.style.backgroundColor = randomColor();
   // console.log('nav', e.target, e.currentTarget);
   // console.log(this === e.currentTarget);
+});
+
+const h1 = document.querySelector('h1');
+// console.log(h1.querySelectorAll('.highlight'));
+// console.log(h1.childNodes);
+// console.log(h1.children);
+h1.firstElementChild.style.color = 'white';
+h1.lastElementChild.style.color = 'orangered';
+
+// going upwards
+
+// console.log(h1.parentNode);
+// console.log(h1.parentElement);
+h1.closest('.header').style.background = 'var(--color-secondary-darker)';
+h1.closest('h1').style.background = 'var(--gradient-primary)';
+// console.log(h1.previousElementSibling);
+// console.log(h1.nextElementSibling);
+// console.log(h1.previousSibling);
+// console.log(h1.nextSibling);
+console.log(h1.parentElement.children);
+[...h1.parentElement.children].forEach(function (el) {
+  if (el !== h1) el.style.transform = 'scale(0.5)';
 });
 */
