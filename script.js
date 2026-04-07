@@ -185,13 +185,15 @@ headerObserver.observe(header);
 const allSections = document.querySelectorAll('.section');
 
 const revealSection = function (entries, observer) {
-  const [entry] = entries;
-  console.log(entry);
+  console.log(entries);
+  // const [entry] = entries;
+  entries.forEach(entry => {
+    // gaurd clause
+    if (!entry.isIntersecting) return;
 
-  // gaurd clause
-  if (!entry.isIntersecting) return;
-  entry.target.classList.remove('section--hidden');
-  observer.unobserve(entry.target);
+    entry.target.classList.remove('section--hidden');
+    observer.unobserve(entry.target);
+  });
 };
 const sectionObserver = new IntersectionObserver(revealSection, {
   root: null,
