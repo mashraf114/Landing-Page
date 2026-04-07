@@ -185,7 +185,7 @@ headerObserver.observe(header);
 const allSections = document.querySelectorAll('.section');
 
 const revealSection = function (entries, observer) {
-  console.log(entries);
+  // console.log(entries);
   // const [entry] = entries;
   entries.forEach(entry => {
     // gaurd clause
@@ -204,6 +204,31 @@ allSections.forEach(function (section) {
   section.classList.add('section--hidden');
 });
 
+// lazy loading images
+const loadImg = function (entries, observer) {
+  const [entry] = entries;
+  console.log(entry);
+  if (!entry.isIntersecting) return;
+
+  //replace src with data-src
+  entry.target.src = entry.target.dataset.src;
+
+  entry.target.addEventListener('load', function () {
+    entry.target.classList.remove('lazy-img');
+  });
+
+  observer.unobserve(entry.target);
+};
+
+const imgTargets = document.querySelectorAll('img[data-src]');
+// console.log(imgTargets);
+const imgObserver = new IntersectionObserver(loadImg, {
+  root: null,
+  threshold: 0,
+  rootMargin: '-400px',
+});
+
+imgTargets.forEach(img => imgObserver.observe(img));
 ////////////////////////
 ////////////////////////
 ////////////////////////
