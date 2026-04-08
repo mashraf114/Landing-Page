@@ -207,7 +207,7 @@ allSections.forEach(function (section) {
 // lazy loading images
 const loadImg = function (entries, observer) {
   const [entry] = entries;
-  console.log(entry);
+  // console.log(entry);
   if (!entry.isIntersecting) return;
 
   //replace src with data-src
@@ -299,7 +299,7 @@ const slider = function () {
   btnLeft.addEventListener('click', prevSlide);
 
   document.addEventListener('keydown', function (e) {
-    console.log(e);
+    // console.log(e);
     if (e.key === 'ArrowLeft') prevSlide();
     e.key === 'ArrowRight' && nextSlide();
   });
@@ -458,3 +458,13 @@ console.log(h1.parentElement.children);
   if (el !== h1) el.style.transform = 'scale(0.5)';
 });
 */
+
+// document.addEventListener('DOMContentLoaded', function (e) {
+//   console.log('htmldsfdsfdsf', e);
+// });
+
+// window.addEventListener('beforeunload', function (e) {
+//   e.preventDefault();
+//   console.log(e);
+//   e.returnValue = '';
+// });
