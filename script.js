@@ -83,7 +83,7 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
   // Matching strategy
   if (e.target.classList.contains('nav__link')) {
     const id = e.target.getAttribute('href');
-    console.log(id);
+    // console.log(id);
 
     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
   }
@@ -98,14 +98,13 @@ tabsContainer.addEventListener('click', function (e) {
   // matching strategy
   // closest , the best method in event delegation
   const clicked = e.target.closest('.operations__tab');
-  console.log(clicked);
+  // console.log(clicked);
 
   // gaurd clause
   if (!clicked) return;
 
   // active tab
   tabs.forEach(t => t.classList.remove('operations__tab--active'));
-  clicked.classList.add('operations__tab--active');
   tabsContent.forEach(c => c.classList.remove('operations__content--active'));
   // Activate tab
   clicked.classList.add('operations__tab--active');
@@ -137,8 +136,8 @@ const handleHover = function (e) {
   }
 };
 
-// nav.addEventListener('mouseover', handleHover.bind(0.5));
-// nav.addEventListener('mouseout', handleHover.bind(1));
+nav.addEventListener('mouseover', handleHover.bind(0.5));
+nav.addEventListener('mouseout', handleHover.bind(1));
 
 // // sticky nav
 // const initialCoords = section1.getBoundingClientRect();
